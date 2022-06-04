@@ -10,13 +10,7 @@
   "files": [
     "src",
     "lib",
-    "android",
-    "ios",
-    "cpp",
-    "react-native-web-mapview.podspec",
     "!lib/typescript/example",
-    "!android/build",
-    "!ios/build",
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__"
@@ -36,7 +30,10 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/alamoWEB/react-native-web-mapview",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alamoWEB/react-native-web-mapview"
+  },
   "author": "alamoWEB <github@alamoweb.tech> (https://alamoweb.tech)",
   "license": "MIT",
   "bugs": {
@@ -149,5 +146,6 @@
   },
   "dependencies": {
     "leaflet": "^1.8.0"
-  }
+  },
+  "private": false
 }
