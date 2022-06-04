@@ -1,5 +1,5 @@
 {
-  "name": "react-native-web-mapview",
+  "name": "@alamoweb/react-native-web-mapview",
   "version": "0.1.0",
   "description": "React Native for WEB implementation of react-native-maps using Leaflet",
   "main": "lib/commonjs/index",
