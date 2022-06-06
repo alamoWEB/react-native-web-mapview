@@ -1,22 +1,18 @@
 # react-native-web-mapview
 
-React Native for Web implementation of react-native-maps
+React Native for Web implementation of react-native-maps (using Leaflet)
 
 ## Installation
 
 ```sh
-npm install react-native-web-mapview
+yarn add react-native-web-mapview
 ```
+
+### Add Leaflet CSS (TBD)
 
 ## Usage
 
-```js
-import { multiply } from "react-native-web-mapview";
-
-// ...
-
-const result = await multiply(3, 7);
-```
+TBD
 
 ## Contributing
 

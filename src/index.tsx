@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, memo, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { FC, forwardRef, memo, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
 import * as Leaflet from 'leaflet';
 import type { LatLng, MapViewProps } from './types';
 import { View } from 'react-native';
@@ -14,18 +14,27 @@ const MapView: FC<MapViewProps> = forwardRef(({style, region, initialRegion, max
   })
 
   useImperativeHandle(ref, () => ({
-    getBounds: async () => {
+    getMapBoundaries: async () => {
       if (!map) {
         return null
       }
 
       const bounds = map.getBounds()
 
+      const northEast = bounds.getNorthEast()
+      const southWest = bounds.getNorthEast()
+
       return {
-        northEast: bounds.getNorthEast(),
-        southWest: bounds.getSouthWest()
+        northEast: {
+          latitude: northEast.lat,
+          longiture: northEast.lng
+        },
+        southWest: {
+          latitude: southWest.lat,
+          longiture: southWest.lng
+        }
       }
-    }
+    },
   }), [map])
 
   useEffect(() => {
@@ -41,18 +50,23 @@ const MapView: FC<MapViewProps> = forwardRef(({style, region, initialRegion, max
     }
   }, [region, center])
 
-  useEffect(() => {
-    if (mapContainerRef.current) {
+  useLayoutEffect(() => {
+    if (mapContainerRef.current && !map) {
       const defaultZoom = 13
 
       setMap(new Leaflet.Map(mapContainerRef.current, {
+        layers: [
+          Leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          }),
+        ],
         center: new Leaflet.LatLng(center.latitude, center.longitude),
         zoom: maxZoomLevel && defaultZoom > maxZoomLevel ? maxZoomLevel : (minZoomLevel && defaultZoom < minZoomLevel ? minZoomLevel : defaultZoom),
         minZoom: minZoomLevel,
         maxZoom: maxZoomLevel
       }))
     }
-  }, [mapContainerRef.current, center, maxZoomLevel, minZoomLevel])
+  }, [mapContainerRef.current, map, center, maxZoomLevel, minZoomLevel])
 
   return (
     <View
