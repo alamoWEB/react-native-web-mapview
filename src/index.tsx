@@ -74,7 +74,7 @@ const MapView: FC<MapViewProps> = forwardRef(({style, region, initialRegion, max
         height: '100%',
       }}
     >
-      <div ref={mapContainerRef}></div>
+      <div ref={mapContainerRef} style={{flex: 1}}></div>
     </View>
   );
 })
