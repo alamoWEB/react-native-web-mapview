@@ -1,4 +1,5 @@
-import type { NativeSyntheticEvent, ViewProps } from "react-native";
+import type { Map } from "leaflet";
+import type { ImageURISource, NativeSyntheticEvent, ViewProps } from "react-native";
 
 export interface Region {
   latitude: number;
@@ -15,6 +16,19 @@ export interface LatLng {
 export interface Point {
   x: number;
   y: number;
+}
+
+export interface Boundaries {
+  northEast: LatLng;
+  southWest: LatLng;
+}
+
+export interface Camera {
+  center: LatLng;
+  heading: number;
+  pitch: number;
+  zoom: number;
+  altitude: number;
 }
 
 export type EventActionType =
@@ -43,12 +57,25 @@ export interface MapViewProps extends ViewProps {
   minZoomLevel?: number;
   maxZoomLevel?: number;
 
-  onMapLoaded?: () => void;
   onMapReady?: () => void;
   onRegionChange?: (region: Region, details?: { isGesture: boolean }) => void;
   onRegionChangeComplete?: (
     region: Region,
     details?: { isGesture: boolean }
   ) => void;
-  onPanDrag?: (event: MapEvent) => void;
+  onPanDrag?: (event: any) => void;
+}
+
+export interface MarkerProps extends ViewProps {
+  map: Map,
+  identifier?: string;
+  title?: string;
+  description?: string;
+  image?: ImageURISource | string;
+  icon?: ImageURISource | string;
+  opacity?: number;
+  coordinate: LatLng;
+  anchor?: Point;
+
+  onPress?: (event: any) => void;
 }
