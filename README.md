@@ -5,7 +5,7 @@ React Native for Web implementation of react-native-maps (using Leaflet)
 ## Installation
 
 ```sh
-yarn add react-native-web-mapview
+yarn add @alamoweb/react-native-web-mapview
 ```
 
 ### Add Leaflet CSS (TBD)
