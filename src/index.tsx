@@ -82,7 +82,7 @@ const MapView: FC<MapViewProps> = forwardRef(({style, region, initialRegion, max
 
       setMap(new Leaflet.Map(mapContainerRef.current, {
         layers: [
-          Leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          Leaflet.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           }),
         ],
