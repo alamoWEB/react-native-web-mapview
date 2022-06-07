@@ -1,10 +1,10 @@
 # react-native-web-mapview
 
-React Native for Web implementation of react-native-maps (using Leaflet)
+> React Native for Web implementation of react-native-maps (using Leaflet)
 
 # About
 
-Based on react-native-web-maps but using Leaflet, avoinding expensive Google Maps costs.
+Based on `react-native-web-maps` but using Leaflet, avoinding expensive Google Maps costs.
 
 ## Installation
 
@@ -12,10 +12,20 @@ Based on react-native-web-maps but using Leaflet, avoinding expensive Google Map
 yarn add @alamoweb/react-native-web-mapview
 ```
 
-Add the the Leaflet CSS:
+Add the Leaflet CSS:
 
 - In case you're using Expo, add it to your web/index.html
 [How to expose expo's index.html?](https://github.com/expo/expo/issues/11401#issuecomment-747745228)
+
+```html
+<html>
+  <head>
+    ...
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+  </head>
+  ...
+</html>
+```
 
 
 ### Additional
