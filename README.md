@@ -4,7 +4,7 @@
 
 # About
 
-Based on `react-native-web-maps` but using Leaflet, avoinding expensive Google Maps costs.
+Based on `react-native-web-maps` but using Leaflet (default).
 
 ## Installation
 
@@ -29,7 +29,7 @@ Add the Leaflet CSS:
 
 
 ### Additional
-If you're using `react-google-maps` lib for iOS/Android an want to support Web without needing to add a condition to switch between the libs, add this alias to your `webpack.config.js`:
+If you're using `react-google-maps` lib for iOS/Android and wanting to support Web without needing to add a condition to switch between the libs, add this alias to your `webpack.config.js`:
 
 ```js
 const createExpoWebpackConfigAsync = require('@expo/webpack-config');
@@ -65,17 +65,24 @@ The officially supported props are:
 - `initialRegion`
 - `maxZoomLevel`
 - `minZoomLevel`
+
+
 The officially supported events are:
 - `onMapReady`
 - `onPanDrag`
 - `onRegionChange`
 - `onRegionChangeComplete`
+
+
 The officially supported methods are:
 - `getMapBoundaries`
 - `getCamera`
 - `setCamera`
+
+
 Additional methods:
 - `getMap`: returns the Leaflet map instance
+
 
 `Marker`:
 
@@ -87,6 +94,8 @@ The officially supported props are:
 - `coordinate`
 - `identifier`
 - `opacity`
+
+
 The officially supported events are:
 - `onPress`
 
