@@ -98,6 +98,28 @@ const Marker: FC<MarkerProps> = ({map, identifier, title, description, image, ic
     return () => {}
   }, [marker, map, coordinate, getMarkerTitle, opacity, getMarkerIcon, onPress, identifier])
 
+  useEffect(() => {
+    if (marker) {
+      marker.setOpacity(opacity || 1)
+    }
+  }, [opacity])
+
+  useEffect(() => {
+    if (marker && (image || icon)) {
+      const newIcon = getMarkerIcon()
+
+      if (newIcon) {
+        marker.setIcon(newIcon)
+      }
+    }
+  }, [getMarkerIcon])
+
+  useEffect(() => {
+    if (marker) {
+      marker.setLatLng(latLngToLeafletLatLng(coordinate))
+    }
+  }, [coordinate])
+
   return null
 }
 
