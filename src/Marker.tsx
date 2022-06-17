@@ -120,6 +120,15 @@ const Marker: FC<MarkerProps> = ({map, identifier, title, description, image, ic
     }
   }, [coordinate])
 
+  useEffect(() => {
+    return () => {
+      if (marker) {
+        marker.remove()
+        setMarker(undefined)
+      }
+    }
+  }, [marker])
+
   return null
 }
 

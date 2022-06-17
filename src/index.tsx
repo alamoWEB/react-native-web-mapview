@@ -152,6 +152,15 @@ const MapView: FC<MapViewProps> = forwardRef(({style, region, initialRegion, max
     return () => {}
   }, [map, onMapReady, onPanDrag, onRegionChange, onRegionChangeComplete])
 
+  useEffect(() => {
+    return () => {
+      if (map) {
+        map.remove()
+        setMap(undefined)
+      }
+    }
+  }, [map])
+
   return (
     <View
       style={style ?? {
