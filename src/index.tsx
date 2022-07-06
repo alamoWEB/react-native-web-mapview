@@ -48,7 +48,63 @@ const MapView: FC<MapViewProps> = forwardRef(({style, region, initialRegion, max
 
     setCamera: async (camera: Camera) => {
       if (map) {
-        if (camera.zoom !== map.getZoom()) {
+        if (camera.center) {
+          const mapCenter = map.getCenter()
+
+          if (camera.center.latitude !== mapCenter.lat || camera.center.longitude !== mapCenter.lng) {
+            map.setView(
+              latLngToLeafletLatLng(camera.center), 
+              camera.zoom >= 0 
+                ? isValidZoom(maxZoomLevel) && camera.zoom > maxZoomLevel! 
+                  ? maxZoomLevel! 
+                  : (
+                    isValidZoom(minZoomLevel) && camera.zoom < minZoomLevel! 
+                      ? minZoomLevel! 
+                      : camera.zoom
+                  ) 
+                : map.getZoom(), 
+              {
+                duration: 0
+              }
+            )
+          }
+        } else if (camera.zoom !== map.getZoom()) {
+          map.setZoom(
+            isValidZoom(maxZoomLevel) && camera.zoom > maxZoomLevel! 
+              ? maxZoomLevel! 
+              : (
+                isValidZoom(minZoomLevel) && camera.zoom < minZoomLevel! 
+                ? minZoomLevel! 
+                : camera.zoom
+              )
+          )
+        }
+      }
+    },
+
+    animateCamera: async (camera: Camera) => {
+      if (map) {
+        if (camera.center) {
+          const mapCenter = map.getCenter()
+          
+          if (camera.center.latitude !== mapCenter.lat || camera.center.longitude !== mapCenter.lng) {
+            map.flyTo(
+              latLngToLeafletLatLng(camera.center), 
+              camera.zoom >= 0 
+                ? isValidZoom(maxZoomLevel) && camera.zoom > maxZoomLevel! 
+                  ? maxZoomLevel! 
+                  : (
+                    isValidZoom(minZoomLevel) && camera.zoom < minZoomLevel! 
+                      ? minZoomLevel! 
+                      : camera.zoom
+                  ) 
+                : map.getZoom(), 
+              {
+                duration: 0.10
+              }
+            )
+          }
+        } else if (camera.zoom !== map.getZoom()) {
           map.setZoom(
             isValidZoom(maxZoomLevel) && camera.zoom > maxZoomLevel! 
               ? maxZoomLevel! 

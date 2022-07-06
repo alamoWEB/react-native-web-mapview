@@ -78,6 +78,7 @@ The officially supported methods are:
 - `getMapBoundaries`
 - `getCamera`
 - `setCamera`
+- `animateCamera`
 
 
 Additional methods:
