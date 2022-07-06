@@ -100,7 +100,7 @@ const MapView: FC<MapViewProps> = forwardRef(({style, region, initialRegion, max
                   ) 
                 : map.getZoom(), 
               {
-                duration: 0.10
+                duration: 1
               }
             )
           }
